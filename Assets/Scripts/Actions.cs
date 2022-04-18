@@ -7,6 +7,7 @@ public class Actions : MonoBehaviour
 {
     public GameObject printer;
     public GameObject fingerMarkReportPrefab;
+    public int fingerprintCost = 20;
 
     public Button fingerprintButton;
 
@@ -17,11 +18,15 @@ public class Actions : MonoBehaviour
 
     public void FingerPrintReport()
     {
-        GameObject newReport = Instantiate(fingerMarkReportPrefab, printer.transform);
-        newReport.GetComponent<FingerMarkReport>().nameTXT.text = GameManager.instance.selectedSuspect.GetComponent<Character>().fullName;
-        printer.GetComponent<AudioSource>().Play();
+        if (ScoreTracker.instance.CheckRep(fingerprintCost))
+        {
+            ScoreTracker.instance.ReduceRep(fingerprintCost);
+            GameObject newReport = Instantiate(fingerMarkReportPrefab, printer.transform);
+            newReport.GetComponent<FingerMarkReport>().nameTXT.text = GameManager.instance.selectedSuspect.GetComponent<Character>().fullName;
+            printer.GetComponent<AudioSource>().Play();
 
-        //Turn off pop up
-        gameObject.SetActive(false);
+            //Turn off pop up
+            gameObject.SetActive(false);
+        }
     }
 }

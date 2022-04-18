@@ -30,21 +30,22 @@ public class ScoreTracker : MonoBehaviour
 
     public void ReduceRep(int amount)
     {
-        //try to buy the thing
+        reputation -= amount;
+        repText.text = "Reputation: " + reputation;
+    }
+
+    public bool CheckRep(int amount)
+    {
+        //check if we have enough rep
         if (reputation >= amount)
         {
-            reputation -= amount;
-            repText.text = "Reputation: " + reputation;
+            return true;
         }
         else //can't, so flash the rep text
         {
             StartCoroutine(FlashText());
+            return false;
         }
-    }
-
-    public void AddRep(int amount)
-    {
-
     }
 
     IEnumerator FlashText()

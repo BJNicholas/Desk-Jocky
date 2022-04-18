@@ -28,51 +28,60 @@ public class Witness : MonoBehaviour
 
     public void HeightQuestion()
     {
-        ScoreTracker.instance.ReduceRep(repPerQuestion);
-        if(MurderManager.instance.murderer.GetComponent<Character>().height < 160)
+        if (ScoreTracker.instance.CheckRep(repPerQuestion))
         {
-            heightDesc = "short";
-        }
-        if (MurderManager.instance.murderer.GetComponent<Character>().height >= 160)
-        {
-            heightDesc = "just an average height for a";
-        }
-        if (MurderManager.instance.murderer.GetComponent<Character>().height >= 190)
-        {
-            heightDesc = "tall";
-        }
+            ScoreTracker.instance.ReduceRep(repPerQuestion);
+            if (MurderManager.instance.murderer.GetComponent<Character>().height < 160)
+            {
+                heightDesc = "short";
+            }
+            if (MurderManager.instance.murderer.GetComponent<Character>().height >= 160)
+            {
+                heightDesc = "just an average height for a";
+            }
+            if (MurderManager.instance.murderer.GetComponent<Character>().height >= 190)
+            {
+                heightDesc = "tall";
+            }
 
 
-        statement += "He was a " + heightDesc + " man. ";
-        diologBox.SetActive(true);
+            statement += "He was a " + heightDesc + " man. ";
+            diologBox.SetActive(true);
+        }
     }
     public void BeardQuestion()
     {
-        ScoreTracker.instance.ReduceRep(repPerQuestion);
-        if (MurderManager.instance.murderer.GetComponent<Character>().bearded == true)
+        if (ScoreTracker.instance.CheckRep(repPerQuestion))
         {
-            beardDesc = "did";
-        }
-        else
-        {
-            beardDesc = "did'nt";
-        }
+            ScoreTracker.instance.ReduceRep(repPerQuestion);
+            if (MurderManager.instance.murderer.GetComponent<Character>().bearded == true)
+            {
+                beardDesc = "did";
+            }
+            else
+            {
+                beardDesc = "did'nt";
+            }
 
-        statement += "He " + beardDesc + " have facial hair. ";
-        diologBox.SetActive(true);
+            statement += "He " + beardDesc + " have facial hair. ";
+            diologBox.SetActive(true);
+        }
     }
     public void HatQuestion()
     {
-        ScoreTracker.instance.ReduceRep(repPerQuestion);
-        if (MurderManager.instance.murderer.GetComponent<Character>().wearingHat == true)
+        if (ScoreTracker.instance.CheckRep(repPerQuestion))
         {
-            hatDesc = "was";
+            ScoreTracker.instance.ReduceRep(repPerQuestion);
+            if (MurderManager.instance.murderer.GetComponent<Character>().wearingHat == true)
+            {
+                hatDesc = "was";
+            }
+            else
+            {
+                hatDesc = "was'nt";
+            }
+            statement += "He " + hatDesc + " wearing a hat. ";
+            diologBox.SetActive(true);
         }
-        else
-        {
-            hatDesc = "was'nt";
-        }
-        statement += "He " + hatDesc + " wearing a hat. ";
-        diologBox.SetActive(true);
     }
 }
