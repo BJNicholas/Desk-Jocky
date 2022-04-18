@@ -8,7 +8,7 @@ public class VictimFile : MonoBehaviour
     public Text victimName, height, age, profession;
     [Header("Manner of Death")]
     public Text cause;
-    public Text weapon, location, time;
+    public Text location;
 
 
     private void Update()
@@ -19,9 +19,7 @@ public class VictimFile : MonoBehaviour
         profession.text = MurderManager.instance.victimProfession.ToString();
 
         cause.text = MurderManager.instance.causeOfDeath.ToString();
-        weapon.text = MurderManager.instance.murderWeapon.ToString();
         location.text = MurderManager.instance.murderLocation.ToString();
-        time.text = MurderManager.instance.timeOfDeath.ToString() + ":00hrs";
 
     }
 }

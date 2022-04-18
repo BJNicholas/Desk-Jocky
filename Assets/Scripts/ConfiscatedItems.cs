@@ -26,9 +26,7 @@ public class ConfiscatedItems : MonoBehaviour
     public void GenerateSlots()
     {
         int count = 0;
-        print(count + " = Count");
         int itemCount = GameManager.instance.selectedSuspect.GetComponent<Character>().items.ToArray().Length;
-        print(itemCount + " = item count");
 
         if (itemCount != 0)
         {
