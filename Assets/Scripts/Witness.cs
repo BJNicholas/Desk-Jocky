@@ -10,6 +10,7 @@ public class Witness : MonoBehaviour
     public GameObject diologBox;
     public Text diolog;
 
+    public int repPerQuestion;
     public string heightDesc;
     public string beardDesc;
     public string hatDesc;
@@ -27,6 +28,7 @@ public class Witness : MonoBehaviour
 
     public void HeightQuestion()
     {
+        ScoreTracker.instance.ReduceRep(repPerQuestion);
         if(MurderManager.instance.murderer.GetComponent<Character>().height < 160)
         {
             heightDesc = "short";
@@ -46,7 +48,8 @@ public class Witness : MonoBehaviour
     }
     public void BeardQuestion()
     {
-        if(MurderManager.instance.murderer.GetComponent<Character>().bearded == true)
+        ScoreTracker.instance.ReduceRep(repPerQuestion);
+        if (MurderManager.instance.murderer.GetComponent<Character>().bearded == true)
         {
             beardDesc = "did";
         }
@@ -60,6 +63,7 @@ public class Witness : MonoBehaviour
     }
     public void HatQuestion()
     {
+        ScoreTracker.instance.ReduceRep(repPerQuestion);
         if (MurderManager.instance.murderer.GetComponent<Character>().wearingHat == true)
         {
             hatDesc = "was";
