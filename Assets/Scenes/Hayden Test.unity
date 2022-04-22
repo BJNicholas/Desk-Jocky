@@ -426,6 +426,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 643575245}
     m_Modifications:
+    - target: {fileID: 983843823768071701, guid: a2e84a2ca2d8fbd4cacfc0170b7a27aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636390525584590593, guid: a2e84a2ca2d8fbd4cacfc0170b7a27aa, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1.5128
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636390525584590593, guid: a2e84a2ca2d8fbd4cacfc0170b7a27aa, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0073
+      objectReference: {fileID: 0}
+    - target: {fileID: 3662851355344028596, guid: a2e84a2ca2d8fbd4cacfc0170b7a27aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6041250856485071061, guid: a2e84a2ca2d8fbd4cacfc0170b7a27aa, type: 3}
       propertyPath: m_Name
       value: Character (4)
@@ -473,6 +489,10 @@ PrefabInstance:
     - target: {fileID: 6041250856485071062, guid: a2e84a2ca2d8fbd4cacfc0170b7a27aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6729632959513442512, guid: a2e84a2ca2d8fbd4cacfc0170b7a27aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2e84a2ca2d8fbd4cacfc0170b7a27aa, type: 3}
@@ -863,9 +883,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363edc83e49bb09408b1b0aa28f0e8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionsBoard: {fileID: 0}
   printer: {fileID: 456679516}
   fingerMarkReportPrefab: {fileID: 876758868961147541, guid: d034a284546e7fc438e93bbd5356c251, type: 3}
+  fingerprintCost: 20
+  ballisticsReportPrefab: {fileID: 0}
+  ballisticsCost: 20
+  autopsyReportPrefab: {fileID: 0}
+  autopsyCost: 20
   fingerprintButton: {fileID: 1950313873}
+  ballisticsButton: {fileID: 0}
+  autopsyButton: {fileID: 0}
 --- !u!1001 &224033767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1297,9 +1325,7 @@ MonoBehaviour:
   age: {fileID: 1117239454}
   profession: {fileID: 1030426305}
   cause: {fileID: 514404918}
-  weapon: {fileID: 1381977703}
   location: {fileID: 2068003191}
-  time: {fileID: 1233370989}
 --- !u!1001 &291696829
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 
 public class Character : MonoBehaviour
@@ -24,6 +25,9 @@ public class Character : MonoBehaviour
     [Range(-3f, 3f)] public float voice;
 
     public List<GameObject> items;
+
+    [Space]
+    public Image veil;
 
     private void Start()
     {
@@ -191,6 +195,16 @@ public class Character : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) //left click
         {
             GameManager.instance.selectedSuspect = gameObject;
+
+            //enable veil for all suspects
+            GameObject[] suspects = GameObject.FindGameObjectsWithTag("Suspect");
+            for (int i = 0; i < suspects.Length; i++)
+            {
+                suspects[i].GetComponent<Character>().veil.enabled = true;
+            }
+            //disable the veil for selected
+            veil.enabled = false;
+
             GetComponent<AudioSource>().Play();
         }
         else if(Input.GetMouseButtonDown(1)) //right click
