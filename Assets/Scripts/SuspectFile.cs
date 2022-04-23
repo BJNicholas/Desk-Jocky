@@ -41,6 +41,7 @@ public class SuspectFile : MonoBehaviour
             CaseComplete.instance.result.text = "Guilty";
             //add 1 to total cases solved
             GlobalAchievements.ach01Count += 1;
+            GlobalAchievements.ach02Count += 1;
         }
         else
         {
