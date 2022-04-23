@@ -39,6 +39,8 @@ public class SuspectFile : MonoBehaviour
             print("WELL DONE");
             GameManager.instance.caseCompleteMenu.SetActive(true);
             CaseComplete.instance.result.text = "Guilty";
+            //add 1 to total cases solved
+            GlobalAchievements.ach01Count += 1;
         }
         else
         {
