@@ -100,7 +100,12 @@ public class MurderManager : MonoBehaviour
             }
         }
         //Poison
-        else if (murderWeapon == GameManager.weapons.Poison)
+        else if (murderWeapon == GameManager.weapons.Pills)
+        {
+            numOfPossibleCauses = 1;
+            causeOfDeath = GameManager.causesOfDeath.Poisoned;
+        }
+        else if (murderWeapon == GameManager.weapons.Syringe)
         {
             numOfPossibleCauses = 1;
             causeOfDeath = GameManager.causesOfDeath.Poisoned;
@@ -259,13 +264,13 @@ public class MurderManager : MonoBehaviour
             }
         }
         //Poison
-        else if (murderWeapon == GameManager.weapons.Poison)
+        else if (murderWeapon == GameManager.weapons.Pills)
         {
-            numOfPossibleCauses = 4;
+            numOfPossibleCauses = 6;
             int roll = Random.Range(0, numOfPossibleCauses);
             if (roll == 0)
             {
-                murderer.GetComponent<Character>().profession = GameManager.professions.Doctor;
+                murderer.GetComponent<Character>().profession = GameManager.professions.Labourer;
             }
             else if (roll == 1)
             {
@@ -273,12 +278,26 @@ public class MurderManager : MonoBehaviour
             }
             else if (roll == 2)
             {
-                murderer.GetComponent<Character>().profession = GameManager.professions.Chef;
+                murderer.GetComponent<Character>().profession = GameManager.professions.Soldier;
             }
             else if (roll == 3)
             {
                 murderer.GetComponent<Character>().profession = GameManager.professions.Butcher;
             }
+            else if (roll == 4)
+            {
+                murderer.GetComponent<Character>().profession = GameManager.professions.Chef;
+            }
+            else if (roll == 5)
+            {
+                murderer.GetComponent<Character>().profession = GameManager.professions.Doctor;
+            }
+        }
+        else if (murderWeapon == GameManager.weapons.Syringe)
+        {
+            numOfPossibleCauses = 1;
+            murderer.GetComponent<Character>().profession = GameManager.professions.Doctor;
+
         }
     }
     public void GenerateMurderAge(GameObject murderer)
@@ -308,12 +327,12 @@ public class MurderManager : MonoBehaviour
         }
         else if (murderWeapon == GameManager.weapons.Cane)
         {
-            murderer.GetComponent<Character>().age = Random.Range(18, 80);
+            murderer.GetComponent<Character>().age = Random.Range(50, 80);
         }
         //Poison
-        else if (murderWeapon == GameManager.weapons.Poison)
+        else if (murderWeapon == GameManager.weapons.Pills)
         {
-            murderer.GetComponent<Character>().age = Random.Range(18, 80);
+            murderer.GetComponent<Character>().age = Random.Range(40, 80);
         }
     }
 
@@ -331,9 +350,13 @@ public class MurderManager : MonoBehaviour
         {
             murderer.GetComponent<Character>().GiveItem(GameManager.instance.items[0], 1f);
         }
-        else if (murderWeapon == GameManager.weapons.Poison)
+        else if (murderWeapon == GameManager.weapons.Pills)
         {
             murderer.GetComponent<Character>().GiveItem(GameManager.instance.items[3], 1f);
+        }
+        else if (murderWeapon == GameManager.weapons.Syringe)
+        {
+            murderer.GetComponent<Character>().GiveItem(GameManager.instance.items[4], 1f);
         }
         else
         {

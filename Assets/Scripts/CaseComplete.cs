@@ -18,10 +18,12 @@ public class CaseComplete : MonoBehaviour
     public void NextCase()
     {
         SceneManager.LoadScene(1);
+        GameManager.instance.timeCounting = true;
     }
     public void QuitGame()
     {
         Application.Quit();
+        GameManager.instance.ResetTime();
     }
 
 }

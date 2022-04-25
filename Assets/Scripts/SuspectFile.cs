@@ -34,10 +34,12 @@ public class SuspectFile : MonoBehaviour
     }
     public void Guilty()
     {
+        GameManager.instance.timeCounting = false;
         if(GameManager.instance.selectedSuspect == MurderManager.instance.murderer)
         {
             print("WELL DONE");
             GameManager.instance.caseCompleteMenu.SetActive(true);
+            GameManager.instance.AddTime(10);
             CaseComplete.instance.result.text = "Guilty";
             //add 1 to total cases solved
             GlobalAchievements.ach01Count += 1;

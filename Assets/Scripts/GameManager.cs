@@ -6,6 +6,9 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public static float timeRemaining;
+    public float startingTime;
+    public bool timeCounting = true;
     public GameObject[] suspects;
     public GameObject[] items;
 
@@ -41,7 +44,8 @@ public class GameManager : MonoBehaviour
         Rifle,
         Hands,
         Cane,
-        Poison,
+        Pills,
+        Syringe,
         debug
     }
     public enum locations
@@ -57,5 +61,31 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        if (timeRemaining <= 0)
+        {
+            ResetTime();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(timeCounting) timeRemaining -= 1 * Time.deltaTime;
+        print(timeRemaining);
+
+        if(timeRemaining <= 0)
+        {
+            timeCounting = false;
+            caseCompleteMenu.SetActive(true);
+            CaseComplete.instance.result.text = "Time Expired";
+        }
+    }
+
+    public void ResetTime()
+    {
+        timeRemaining = startingTime;
+    }
+    public void AddTime(float amount)
+    {
+        timeRemaining += amount;
     }
 }

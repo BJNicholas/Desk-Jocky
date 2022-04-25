@@ -164,22 +164,11 @@ public class Character : MonoBehaviour
         {
             GiveItem(GameManager.instance.items[2], 0.25f);
         }
-        //poison
-        if(profession == GameManager.professions.Bartender)
+        //pills
+        GiveItem(GameManager.instance.items[3], 0.2f);
+        if(profession == GameManager.professions.Doctor)
         {
-            GiveItem(GameManager.instance.items[3], 0.33f);
-        }
-        else if (profession == GameManager.professions.Chef)
-        {
-            GiveItem(GameManager.instance.items[3], 0.33f);
-        }
-        else if (profession == GameManager.professions.Doctor)
-        {
-            GiveItem(GameManager.instance.items[3], 0.33f);
-        }
-        else
-        {
-            GiveItem(GameManager.instance.items[3], 0.1f);
+            GiveItem(GameManager.instance.items[4], 0.8f);
         }
 
     }
