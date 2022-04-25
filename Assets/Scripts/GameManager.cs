@@ -90,6 +90,8 @@ public class GameManager : MonoBehaviour
     public void AddTime(float amount)
     {
         timeRemaining += amount;
+        if (timeRemaining >= 60)
+            timeRemaining = 60;
     }
     public float GetTimeRemaining(float time)
     {

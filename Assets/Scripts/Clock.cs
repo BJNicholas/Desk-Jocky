@@ -5,15 +5,29 @@ using UnityEngine.UI;
 
 public class Clock : MonoBehaviour
 {
+    #region Singleton
+    public static Clock instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of Clock found");
+            return;
+        }
+        instance = this;
+    }
+    #endregion
     public GameObject clockHand;
     public Text timer;
     public AudioClip ticking, alarm;
+
+    public float timeRe = 0f;
 
     bool alarmStarted = false;
 
     public void FixedUpdate()
     { 
-        float timeRe = 0f;
         timeRe = GameManager.instance.GetTimeRemaining(timeRe);
         Vector3 handpos = new Vector3(0,0,(timeRe + 6.5f) * 6);
         clockHand.transform.localRotation = Quaternion.Euler(handpos);

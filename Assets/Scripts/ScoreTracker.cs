@@ -22,14 +22,17 @@ public class ScoreTracker : MonoBehaviour
 
     public int reputation = 100;
     public Text repText;
+    public bool hasSpent;
 
     private void Start()
     {
+        hasSpent = false;
         repText.text = "Reputation: " + reputation;
     }
 
     public void ReduceRep(int amount)
     {
+        hasSpent = true;
         reputation -= amount;
         repText.text = "Reputation: " + reputation;
     }

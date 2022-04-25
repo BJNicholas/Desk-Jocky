@@ -9,6 +9,14 @@ public class SuspectFile : MonoBehaviour
 
     public GameObject inButton, guButton;
 
+    [Tooltip("The current correct streak of the player")]
+    public int streak;
+
+    private void Start()
+    {
+        streak = PlayerPrefs.GetInt("streak");
+    }
+
 
     private void Update()
     {
@@ -25,12 +33,17 @@ public class SuspectFile : MonoBehaviour
         {
             inButton.SetActive(false);
             guButton.SetActive(false);
+            suspectName.text = "-";
+            height.text = "-";
+            age.text = "-";
+            profession.text = "-";
         }
     }
 
     public void Innocent()
     {
         GameManager.instance.selectedSuspect.SetActive(false);
+        GameManager.instance.selectedSuspect = null;
     }
     public void Guilty()
     {
@@ -42,14 +55,46 @@ public class SuspectFile : MonoBehaviour
             GameManager.instance.caseCompleteMenu.SetActive(true);
             GameManager.instance.AddTime(10);
             CaseComplete.instance.result.text = "Guilty";
+
             //add 1 to total cases solved
             GlobalAchievements.ach01Count += 1;
             GlobalAchievements.ach02Count += 1;
+            GlobalAchievements.ach03Count += 1;
+
+            //add to the streak and check for achievement
+            streak += 1;
+            PlayerPrefs.SetInt("streak", streak);
+
+            if(PlayerPrefs.GetInt("streak") >= 3)
+            {
+                GlobalAchievements.ach04Count += 1;
+            }
+            
+            //check the time remaining
+            if (GameManager.timeRemaining >= 45)
+            {
+                GlobalAchievements.ach05Count += 1;
+            }
+
+            //check if the player used any questions
+            if(Witness.noQuestions == true)
+            {
+                GlobalAchievements.ach06Count += 1;
+            }
+
+            //check if the player has spent any rep
+            if (ScoreTracker.instance.hasSpent == false)
+            {
+                GlobalAchievements.ach07Count += 1;
+            }
+
         }
         else
         {
             GameManager.instance.caseCompleteMenu.SetActive(true);
             CaseComplete.instance.result.text = "Innocent";
+            streak = 0;
+            PlayerPrefs.SetInt("streak", 0);
         }
     }
 }

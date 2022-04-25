@@ -13,6 +13,10 @@ public class ConfiscatedItems : MonoBehaviour
             ResetSlots();
             GenerateSlots();
         }
+        else
+        {
+            ResetSlots();
+        }
     }
     public void ResetSlots()
     {

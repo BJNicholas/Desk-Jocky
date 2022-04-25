@@ -21,6 +21,8 @@ public class Witness : MonoBehaviour
     public int hairReliable;
     public int hatReliable;
 
+    public static bool noQuestions;
+
     private void Start()
     {
         diologBox.SetActive(false);
@@ -28,6 +30,7 @@ public class Witness : MonoBehaviour
         heightReliable = Random.Range(1, 100);
         hairReliable = Random.Range(1, 100);
         hatReliable = Random.Range(1, 100);
+        noQuestions = true;
     }
 
     private void Update()
@@ -44,6 +47,7 @@ public class Witness : MonoBehaviour
 
         if (ScoreTracker.instance.CheckRep(repPerQuestion))
         {
+            noQuestions = false;
             ScoreTracker.instance.ReduceRep(repPerQuestion);
             //check if the question is reliable
             if (heightReliable >= 34)
@@ -60,12 +64,12 @@ public class Witness : MonoBehaviour
                 {
                     heightDesc = "tall";
                 }
-                statement += "He was a " + heightDesc + " man. ";
+                statement += "He was a " + heightDesc + " man. \n";
                 diologBox.SetActive(true);
             }
             else
             {
-                statement += "I didn't get a good look at his height. ";
+                statement += "I didn't get a good look at his height. \n";
                 diologBox.SetActive(true);
             }
         }
@@ -76,6 +80,7 @@ public class Witness : MonoBehaviour
         EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
         if (ScoreTracker.instance.CheckRep(repPerQuestion))
         {
+            noQuestions = false;
             ScoreTracker.instance.ReduceRep(repPerQuestion);
 
             if (hairReliable >= 34)
@@ -89,12 +94,12 @@ public class Witness : MonoBehaviour
                     beardDesc = "did'nt";
                 }
 
-                statement += "He " + beardDesc + " have facial hair. ";
+                statement += "He " + beardDesc + " have facial hair. \n";
                 diologBox.SetActive(true);
             }
             else
             {
-                statement += "I couldn't see his face. ";
+                statement += "I couldn't see his face. \n";
                 diologBox.SetActive(true);
             }
         }
@@ -105,6 +110,7 @@ public class Witness : MonoBehaviour
         EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
         if (ScoreTracker.instance.CheckRep(repPerQuestion))
         {
+            noQuestions = false;
             ScoreTracker.instance.ReduceRep(repPerQuestion);
 
             if (hatReliable >= 34)
@@ -117,12 +123,12 @@ public class Witness : MonoBehaviour
                 {
                     hatDesc = "was'nt";
                 }
-                statement += "He " + hatDesc + " wearing a hat. ";
+                statement += "He " + hatDesc + " wearing a hat. \n";
                 diologBox.SetActive(true);
             }
             else
             {
-                statement += "I'm not sure, sorry. ";
+                statement += "I'm not sure, sorry. \n";
                 diologBox.SetActive(true);
             }
         }
