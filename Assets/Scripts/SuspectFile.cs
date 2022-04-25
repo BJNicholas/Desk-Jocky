@@ -35,7 +35,8 @@ public class SuspectFile : MonoBehaviour
     public void Guilty()
     {
         GameManager.instance.timeCounting = false;
-        if(GameManager.instance.selectedSuspect == MurderManager.instance.murderer)
+        GameManager.instance.clock.GetComponent<AudioSource>().Stop();
+        if (GameManager.instance.selectedSuspect == MurderManager.instance.murderer)
         {
             print("WELL DONE");
             GameManager.instance.caseCompleteMenu.SetActive(true);

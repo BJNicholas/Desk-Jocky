@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static float timeRemaining;
     public float startingTime;
     public bool timeCounting = true;
+    public GameObject clock;
     public GameObject[] suspects;
     public GameObject[] items;
 
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        clock.GetComponent<AudioSource>().Play();
         if (timeRemaining <= 0)
         {
             ResetTime();
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
         if(timeRemaining <= 0)
         {
             timeCounting = false;
+            clock.GetComponent<AudioSource>().Stop();
             caseCompleteMenu.SetActive(true);
             CaseComplete.instance.result.text = "Time Expired";
         }
@@ -87,5 +90,10 @@ public class GameManager : MonoBehaviour
     public void AddTime(float amount)
     {
         timeRemaining += amount;
+    }
+    public float GetTimeRemaining(float time)
+    {
+        time = timeRemaining;
+        return time;
     }
 }
