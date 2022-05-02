@@ -61,6 +61,8 @@ public class SuspectFile : MonoBehaviour
         int remainingSuspects = GameObject.FindGameObjectsWithTag("Suspect").Length;
         if (remainingSuspects <= 0)
         {
+
+            GameManager.instance.ResetTime();
             GameManager.instance.timeCounting = false;
             GameManager.instance.clock.GetComponent<AudioSource>().Stop();
             GameManager.instance.caseCompleteMenu.SetActive(true);
@@ -78,7 +80,7 @@ public class SuspectFile : MonoBehaviour
         {
             print("WELL DONE");
             GameManager.instance.caseCompleteMenu.SetActive(true);
-            GameManager.instance.AddTime(10);
+            GameManager.instance.ResetTime();
             CaseComplete.instance.result.text = "Guilty";
 
             //add 1 to total cases solved
@@ -116,6 +118,8 @@ public class SuspectFile : MonoBehaviour
         }
         else
         {
+
+            GameManager.instance.ResetTime();
             GameManager.instance.caseCompleteMenu.SetActive(true);
             CaseComplete.instance.result.text = "Innocent";
             streak = 0;
