@@ -68,6 +68,10 @@ public class GameManager : MonoBehaviour
             ResetTime();
         }
     }
+    private void Start()
+    {
+        ResetTime();
+    }
 
     private void FixedUpdate()
     {

@@ -60,7 +60,7 @@ public class Witness : MonoBehaviour
                 {
                     heightDesc = "just an average height for a";
                 }
-                if (MurderManager.instance.murderer.GetComponent<Character>().height >= 190)
+                if (MurderManager.instance.murderer.GetComponent<Character>().height > 190)
                 {
                     heightDesc = "tall";
                 }
