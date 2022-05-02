@@ -198,7 +198,8 @@ public class Character : MonoBehaviour
         }
         else if(Input.GetMouseButtonDown(1)) //right click
         {
-            gameObject.SetActive(false);
+            GameManager.instance.selectedSuspect = gameObject;
+            SuspectFile.instance.Innocent();
         }
     }
 

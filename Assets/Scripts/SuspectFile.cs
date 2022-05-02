@@ -5,6 +5,19 @@ using UnityEngine.UI;
 
 public class SuspectFile : MonoBehaviour
 {
+    #region Singleton
+    public static SuspectFile instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of SuspectFile found");
+            return;
+        }
+        instance = this;
+    }
+    #endregion
     public Text suspectName, height, age, profession;
 
     public GameObject inButton, guButton;
@@ -44,6 +57,18 @@ public class SuspectFile : MonoBehaviour
     {
         GameManager.instance.selectedSuspect.SetActive(false);
         GameManager.instance.selectedSuspect = null;
+
+        int remainingSuspects = GameObject.FindGameObjectsWithTag("Suspect").Length;
+        if (remainingSuspects <= 0)
+        {
+            GameManager.instance.timeCounting = false;
+            GameManager.instance.clock.GetComponent<AudioSource>().Stop();
+            GameManager.instance.caseCompleteMenu.SetActive(true);
+            CaseComplete.instance.result.text = "Innocent";
+            streak = 0;
+            PlayerPrefs.SetInt("streak", 0);
+        }
+
     }
     public void Guilty()
     {
