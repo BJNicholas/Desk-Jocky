@@ -17,7 +17,7 @@ public class CaseComplete : MonoBehaviour
 
     public void NextCase()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameManager.instance.timeCounting = true;
     }
     public void QuitGame()
