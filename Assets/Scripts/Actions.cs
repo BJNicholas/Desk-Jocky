@@ -30,6 +30,8 @@ public class Actions : MonoBehaviour
     {
         if (ScoreTracker.instance.CheckRep(fingerprintCost))
         {
+
+            actionsBoard.SetActive(false);
             ScoreTracker.instance.ReduceRep(fingerprintCost);
             GameObject newReport = Instantiate(fingerMarkReportPrefab, printer.transform);
             printer.GetComponent<AudioSource>().Play();
@@ -42,6 +44,8 @@ public class Actions : MonoBehaviour
     {
         if (ScoreTracker.instance.CheckRep(ballisticsCost))
         {
+
+            actionsBoard.SetActive(false);
             ScoreTracker.instance.ReduceRep(ballisticsCost);
             GameObject newReport = Instantiate(ballisticsReportPrefab, printer.transform);
             printer.GetComponent<AudioSource>().Play();
@@ -54,6 +58,8 @@ public class Actions : MonoBehaviour
     {
         if (ScoreTracker.instance.CheckRep(autopsyCost))
         {
+
+            actionsBoard.SetActive(false);
             ScoreTracker.instance.ReduceRep(autopsyCost);
             GameObject newReport = Instantiate(autopsyReportPrefab, printer.transform);
             printer.GetComponent<AudioSource>().Play();
@@ -63,10 +69,8 @@ public class Actions : MonoBehaviour
         }
     }
 
-    bool toggle;
     public void ToggleActionsBoard()
     {
-        toggle = !toggle;
-        actionsBoard.SetActive(toggle);
+        actionsBoard.SetActive(!actionsBoard.activeInHierarchy);
     }
 }
