@@ -25,6 +25,12 @@ public class SuspectFile : MonoBehaviour
     [Tooltip("The current correct streak of the player")]
     public int streak;
 
+    [Tooltip("How much reputation the player gets when solving a case correct")]
+    public int correctRepGain;
+
+    [Tooltip("How much reputation the player gets when solving a case incorrect")]
+    public int incorrectRepGain;
+
     private void Start()
     {
         streak = PlayerPrefs.GetInt("streak");
@@ -57,6 +63,7 @@ public class SuspectFile : MonoBehaviour
     {
         GameManager.instance.selectedSuspect.SetActive(false);
         GameManager.instance.selectedSuspect = null;
+        ScoreTracker.instance.hasSpent = false;
 
         int remainingSuspects = GameObject.FindGameObjectsWithTag("Suspect").Length;
         if (remainingSuspects <= 0)
@@ -69,6 +76,7 @@ public class SuspectFile : MonoBehaviour
             CaseComplete.instance.result.text = "Innocent";
             streak = 0;
             PlayerPrefs.SetInt("streak", 0);
+            ScoreTracker.instance.AddRep(incorrectRepGain);
         }
 
     }
@@ -115,6 +123,7 @@ public class SuspectFile : MonoBehaviour
                 GlobalAchievements.ach07Count += 1;
             }
 
+            ScoreTracker.instance.AddRep(correctRepGain);
         }
         else
         {
@@ -124,6 +133,8 @@ public class SuspectFile : MonoBehaviour
             CaseComplete.instance.result.text = "Innocent";
             streak = 0;
             PlayerPrefs.SetInt("streak", 0);
+            ScoreTracker.instance.AddRep(incorrectRepGain);
         }
+        ScoreTracker.instance.hasSpent = false;
     }
 }

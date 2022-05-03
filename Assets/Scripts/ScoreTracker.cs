@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreTracker : MonoBehaviour
@@ -13,7 +14,7 @@ public class ScoreTracker : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("More than one instance of ScoreTracker found");
+            Destroy(this.gameObject);
             return;
         }
         instance = this;
@@ -26,14 +27,31 @@ public class ScoreTracker : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
         hasSpent = false;
         repText.text = "Reputation: " + reputation;
+    }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name != "MENU")
+        {
+            if (repText == null)
+                repText = GameObject.FindGameObjectWithTag("RepText").GetComponent<Text>();
+            repText.text = "Reputation: " + reputation;
+        }
     }
 
     public void ReduceRep(int amount)
     {
         hasSpent = true;
         reputation -= amount;
+        repText.text = "Reputation: " + reputation;
+    }
+
+    public void AddRep(int amount)
+    {
+        reputation += amount;
         repText.text = "Reputation: " + reputation;
     }
 

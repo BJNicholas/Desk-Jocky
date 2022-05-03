@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -14,8 +15,9 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && help.activeInHierarchy == false && GameManager.instance.caseCompleteMenu.activeInHierarchy == false)
         {
+            Clock.instance.GetComponent<AudioSource>().Stop();
             main.SetActive(true);
             Time.timeScale = 0;
             GameManager.instance.timeCounting = false;
@@ -25,6 +27,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         main.SetActive(false);
+        Clock.instance.GetComponent<AudioSource>().Play();
         Time.timeScale = 1;
         GameManager.instance.timeCounting = true;
     }
@@ -41,5 +44,10 @@ public class PauseMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("MENU");
     }
 }
