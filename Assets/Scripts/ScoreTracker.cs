@@ -52,6 +52,8 @@ public class ScoreTracker : MonoBehaviour
     public void AddRep(int amount)
     {
         reputation += amount;
+        if (reputation > 200)
+            reputation = 200;
         repText.text = "Reputation: " + reputation;
     }
 
